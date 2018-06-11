@@ -3,25 +3,35 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 
 <body>
-    <h1>Maze Game</h1>
-    <select id="diffSelect">
-        <option value="5">Easy</option>
-        <option value="10">Medium</option>
-        <option value="15">Hard</option>
-    </select>
-    <input type="button" onclick="go()" value="Run Maze" />
+    <div id="page">
+        <div id="message">
+            <h1>Congratulations!</h1>
+            <p>You are done.</p>
+        </div>
+        <div id="menu">
+            <h1>Maze Game</h1>
+            <select id="diffSelect">
+                <option value="5">Easy</option>
+                <option value="10">Medium</option>
+                <option value="15">Hard</option>
+            </select>
+            <input type="button" onclick="makeMaze()" value="Run Maze" />
+            <input type="button" onclick="test()" value="Run Maze" />
+            
+        </div>
 
-    <div>
-        <canvas id="mazeCanvas" height="800" width="800"></canvas>
+        <div id="mazeContainer">
+            <canvas id="mazeCanvas" height="400" width="400"></canvas>
+        </div>
     </div>
     <script type="text/javascript" src="js/globalFuncs.js"></script>
     <script type="text/javascript" src="js/mazeFactory.js"></script>
     <script type="text/javascript" src="js/drawMaze.js"></script>
     <script type="text/javascript" src="js/player.js"></script>
-    
     <script type="text/javascript" src="js/index.js"></script>
 </body>
 

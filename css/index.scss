@@ -1,0 +1,118 @@
+html , body {
+    width: auto;
+    height: auto;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+}
+
+#message {
+    display: none;
+    width: 400px;
+    height: 300px;    
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: -150px;
+    border: solid 1px black;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.8);   
+
+}
+
+#page {
+    font-family: "Segoe UI",Arial,sans-serif;
+    text-align: center;
+    height: auto;
+    width: 80vw;
+    margin: auto;
+    #menu {
+        margin: 1rem;
+        h1{
+            text-decoration: underline;
+            font-weight: 500;
+            font-size: 2rem;
+        }
+    }
+
+    #mazeContainer {
+
+     
+        #mazeCanvas {
+     
+        }
+    }
+}
+
+.border {
+    border: 1px black solid;
+    border-radius: 5px;
+}
+
+@media only screen and (min-height: 414px) {
+    canvas {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media only screen and (min-height : 900px) {
+    canvas {
+        width: 750px;
+        height: 750px;
+    }
+}
+
+body {
+	width: 100wh;
+	height: 90vh;
+	color: #fff;
+	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+	background-size: 400% 400%;
+	-webkit-animation: Gradient 15s ease infinite;
+	-moz-animation: Gradient 15s ease infinite;
+	animation: Gradient 15s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@-moz-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+

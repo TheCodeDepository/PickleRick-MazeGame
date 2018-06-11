@@ -1,4 +1,5 @@
 function Player(maze, ctx, cellSize) {
+    var player = this;    
     var map = maze.map();
     var preCoord = new Coordinate(maze.startCoord().x, maze.startCoord().y);
     var halfCellSize = cellSize / 2;
@@ -16,10 +17,8 @@ function Player(maze, ctx, cellSize) {
         ctx.arc(((coord.x + 1) * cellSize) - halfCellSize, ((coord.y + 1) * cellSize) - halfCellSize, halfCellSize - 5, 0, 2 * Math.PI);
         ctx.fill();
         if (coord.x === maze.endCoord().x && coord.y === maze.endCoord().y) {
-
-            alert("you win!");
-            window.removeEventListener('keydown', check, false);
-
+            (function(){ alert("you win!");}());
+            player.unbindKeyDown();
         }
     }
 
@@ -65,7 +64,15 @@ function Player(maze, ctx, cellSize) {
 
         }
     }
+
+    this.bindKeyDown = function () {
+        window.addEventListener('keydown', check, false);
+    }
+    this.unbindKeyDown = function () {
+        window.removeEventListener('keydown', check, false);
+    }
+
     drawSprite(maze.startCoord());
     drawEnd(maze.endCoord());
-    window.addEventListener('keydown', check, false);
+    this.bindKeyDown();
 }
