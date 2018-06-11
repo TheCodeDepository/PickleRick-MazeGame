@@ -7,6 +7,7 @@
 </head>
 
 <body>
+    <div id="gradient"></div>
     <div id="page">
         <div id="message">
             <h1>Congratulations!</h1>
@@ -16,11 +17,13 @@
             <h1>Maze Game</h1>
             <select id="diffSelect">
                 <option value="5">Easy</option>
-                <option value="10">Medium</option>
-                <option value="15">Hard</option>
+                <option value="12">Medium</option>
+                <option value="23">Hard</option>
+                <option value="30">Extreme</option>
             </select>
             <input type="button" onclick="makeMaze()" value="Run Maze" />
-            <input type="button" onclick="test()" value="Run Maze" />
+            <input type="button" onclick="toggleVisablity('message')" value="Run Maze" />
+
             
         </div>
 

@@ -11,6 +11,7 @@ html, body {
 }
 
 #message {
+  color: white;
   display: none;
   width: 400px;
   height: 300px;
@@ -61,9 +62,13 @@ html, body {
   }
 }
 
-body {
-  width: 100wh;
-  height: 90vh;
+#gradient {
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
   color: #fff;
   background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
   background-size: 400% 400%;

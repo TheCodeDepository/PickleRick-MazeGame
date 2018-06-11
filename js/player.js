@@ -6,15 +6,15 @@ function Player(maze, ctx, cellSize) {
 
     function drawEnd(coord) {
         ctx.beginPath();
-        ctx.rect((coord.x * cellSize) + 5, (coord.y * cellSize) + 5, cellSize - 10, cellSize - 10);
+        ctx.rect((coord.x * cellSize) + 3, (coord.y * cellSize) + 3, cellSize - 6, cellSize - 6);
         ctx.fillStyle = "green";
         ctx.fill();
     }
 
     function drawSprite(coord) {
         ctx.beginPath();
-        ctx.fillStyle = 'red';
-        ctx.arc(((coord.x + 1) * cellSize) - halfCellSize, ((coord.y + 1) * cellSize) - halfCellSize, halfCellSize - 5, 0, 2 * Math.PI);
+        ctx.fillStyle = 'yellow';
+        ctx.arc(((coord.x + 1) * cellSize) - halfCellSize, ((coord.y + 1) * cellSize) - halfCellSize, halfCellSize - 2, 0, 2 * Math.PI);
         ctx.fill();
         if (coord.x === maze.endCoord().x && coord.y === maze.endCoord().y) {
             (function(){ alert("you win!");}());
