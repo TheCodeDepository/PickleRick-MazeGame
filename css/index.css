@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   width: auto;
   height: auto;
   position: absolute;
@@ -10,9 +11,73 @@ html, body {
   right: 0;
 }
 
-#message {
+#mazeContainer {
+  visibility: hidden;
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin: auto;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border: solid black 5px;
+  border-radius: 5px;
+  -webkit-animation: Gradient 15s ease infinite;
+  -moz-animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite;
+}
+
+#mazeContainer canvas {
+  margin: 0;
+}
+
+input[type=button] {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: 5px;
   color: white;
-  display: none;
+  height: 45px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+}
+
+input[type=button]:hover {
+  background-color: black;
+}
+
+.custom-select {
+  display: inline-block;
+}
+
+.custom-select select {
+  height: 30px;
+  width: 100px;
+  border-radius: 0;
+  padding-left: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  height: 45px;
+  font-size: 15px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVQ4T93TMQrCUAzG8V9x8QziiYSuXdzFC7h4AcELOPQAdXYovZCHEATlgQV5GFTe1ozJlz/kS1IpjKqw3wQBVyy++JI0y1GTe7DCBbMAckeNIQKk/BanALBB+16LtnDELoMcsM/BESDlz2heDR3WePwKSLo5eoxz3z6NNcFD+vu3ij14Aqz/DxGbKB7CAAAAAElFTkSuQmCC");
+  background-repeat: no-repeat;
+  background-position: 75px center;
+}
+
+.custom-select select:hover {
+  background-color: black;
+}
+
+#message {
+  visibility: hidden;
+  color: white;
+  display: block;
   width: 400px;
   height: 300px;
   position: fixed;
@@ -26,7 +91,7 @@ html, body {
 }
 
 #page {
-  font-family: "Segoe UI",Arial,sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   text-align: center;
   height: auto;
   width: 80vw;
@@ -38,9 +103,10 @@ html, body {
 }
 
 #page #menu h1 {
-  text-decoration: underline;
-  font-weight: 500;
-  font-size: 2rem;
+  margin: 0;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 3.2rem;
 }
 
 .border {
@@ -48,10 +114,24 @@ html, body {
   border-radius: 5px;
 }
 
-@media only screen and (min-height: 414px) {
+@media only screen and (min-height: 300px) {
+  canvas {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media only screen and (min-height: 500px) {
   canvas {
     width: 400px;
     height: 400px;
+  }
+}
+
+@media only screen and (min-height: 700px) {
+  canvas {
+    width: 600px;
+    height: 600px;
   }
 }
 

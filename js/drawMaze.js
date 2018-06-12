@@ -4,6 +4,7 @@ function DrawMaze(Maze, ctx, cellSize) {
     function drawCell(xCord, yCord, cell) {
         var x = xCord * cellSize;
         var y = yCord * cellSize;
+        ctx.lineWidth=5;
 
         if (cell.n === false) {
             ctx.beginPath();
@@ -30,7 +31,7 @@ function DrawMaze(Maze, ctx, cellSize) {
             ctx.stroke();
         }
 
-    };
+    }
 
     function drawMap() {
         for (x = 0; x < map.length; x++) {
@@ -38,12 +39,12 @@ function DrawMaze(Maze, ctx, cellSize) {
                 drawCell(x, y, map[x][y]);
             }
         }
-    };
+    }
 
     function clear() {
         var canvasSize = cellSize * map.length;
         ctx.clearRect(0, 0, canvasSize, canvasSize);
-    };
+    }
 
    clear();
    drawMap();

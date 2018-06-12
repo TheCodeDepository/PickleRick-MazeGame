@@ -12,23 +12,27 @@
         <div id="message">
             <h1>Congratulations!</h1>
             <p>You are done.</p>
+            <p id="moves"></p>
+            <input type="button" onclick="toggleVisablity('message')" value="Cool!" />
+
         </div>
         <div id="menu">
             <h1>Maze Game</h1>
-            <select id="diffSelect">
-                <option value="5">Easy</option>
-                <option value="12">Medium</option>
-                <option value="23">Hard</option>
-                <option value="30">Extreme</option>
-            </select>
+            <div class="custom-select">
+                <select id="diffSelect">
+                    <option value="5">Easy</option>
+                    <option value="12">Medium</option>
+                    <option value="23">Hard</option>
+                    <option value="30">Extreme</option>
+                </select>
+            </div>
             <input type="button" onclick="makeMaze()" value="Run Maze" />
-            <input type="button" onclick="toggleVisablity('message')" value="Run Maze" />
 
-            
+
         </div>
 
         <div id="mazeContainer">
-            <canvas id="mazeCanvas" height="400" width="400"></canvas>
+            <canvas id="mazeCanvas" height="2000" width="2000"></canvas>
         </div>
     </div>
     <script type="text/javascript" src="js/globalFuncs.js"></script>
