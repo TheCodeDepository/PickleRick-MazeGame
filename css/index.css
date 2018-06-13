@@ -12,39 +12,56 @@ body {
 }
 
 #mazeContainer {
-  visibility: hidden;
+  transition-property: opacity;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+  opacity: 0;
   display: inline-block;
   background-color: rgba(0, 0, 0, 0.3);
   margin: auto;
-  padding-top: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border: solid black 5px;
-  border-radius: 5px;
-  -webkit-animation: Gradient 15s ease infinite;
-  -moz-animation: Gradient 15s ease infinite;
-  animation: Gradient 15s ease infinite;
 }
 
 #mazeContainer canvas {
   margin: 0;
+  display: block;
+  border: solid 5px black;
 }
 
-input[type=button] {
+input[type=button],
+select {
+  transition-property: background-color opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  cursor: pointer;
   background-color: rgba(0, 0, 0, 0.3);
+  height: 45px;
+  width: 150px;
+  padding: 10px;
   border: none;
   border-radius: 5px;
   color: white;
-  height: 45px;
-  padding: 10px;
+  font-size: 15px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
-  font-size: 15px;
 }
 
-input[type=button]:hover {
+input[type=button]:hover,
+select:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+input[type=button]:active,
+select:active {
   background-color: black;
+}
+
+input[type=button]:focus,
+select:focus {
+  outline: none;
+}
+
+input[type=button] {
+  display: inline-block;
 }
 
 .custom-select {
@@ -52,42 +69,36 @@ input[type=button]:hover {
 }
 
 .custom-select select {
-  height: 30px;
-  width: 100px;
-  border-radius: 0;
-  padding-left: 10px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-color: rgba(0, 0, 0, 0.3);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  height: 45px;
-  font-size: 15px;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVQ4T93TMQrCUAzG8V9x8QziiYSuXdzFC7h4AcELOPQAdXYovZCHEATlgQV5GFTe1ozJlz/kS1IpjKqw3wQBVyy++JI0y1GTe7DCBbMAckeNIQKk/BanALBB+16LtnDELoMcsM/BESDlz2heDR3WePwKSLo5eoxz3z6NNcFD+vu3ij14Aqz/DxGbKB7CAAAAAElFTkSuQmCC");
   background-repeat: no-repeat;
-  background-position: 75px center;
+  background-position: 125px center;
 }
 
-.custom-select select:hover {
-  background-color: black;
-}
-
-#message {
+#Message-Container {
   visibility: hidden;
   color: white;
   display: block;
-  width: 400px;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#Message-Container #message {
+  width: 300px;
   height: 300px;
   position: fixed;
   top: 50%;
   left: 50%;
-  margin-left: -200px;
+  margin-left: -150px;
   margin-top: -150px;
-  border: solid 1px black;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.8);
 }
 
 #page {
@@ -99,7 +110,10 @@ input[type=button]:hover {
 }
 
 #page #menu {
-  margin: 1rem;
+  margin: auto;
+  padding: 10px;
+  height: 65px;
+  box-sizing: border-box;
 }
 
 #page #menu h1 {
@@ -116,29 +130,64 @@ input[type=button]:hover {
 
 @media only screen and (min-height: 300px) {
   canvas {
-    width: 200px;
-    height: 200px;
+    width: 225px;
+    height: 225px;
+  }
+}
+
+@media only screen and (min-height: 400px) {
+  canvas {
+    width: 325px;
+    height: 325px;
   }
 }
 
 @media only screen and (min-height: 500px) {
   canvas {
-    width: 400px;
-    height: 400px;
+    width: 425px;
+    height: 425px;
+  }
+}
+
+@media only screen and (min-height: 600px) {
+  canvas {
+    width: 525px;
+    height: 525px;
   }
 }
 
 @media only screen and (min-height: 700px) {
   canvas {
-    width: 600px;
-    height: 600px;
+    width: 625px;
+    height: 625px;
+  }
+}
+
+@media only screen and (min-height: 800px) {
+  canvas {
+    width: 725px;
+    height: 725px;
   }
 }
 
 @media only screen and (min-height: 900px) {
   canvas {
-    width: 750px;
-    height: 750px;
+    width: 825px;
+    height: 825px;
+  }
+}
+
+@media only screen and (min-height: 1000px) {
+  canvas {
+    width: 925px;
+    height: 925px;
+  }
+}
+
+@media only screen and (min-height: 1100px) {
+  canvas {
+    width: 1025px;
+    height: 1025px;
   }
 }
 
@@ -152,33 +201,7 @@ input[type=button]:hover {
   color: #fff;
   background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
   background-size: 400% 400%;
-  -webkit-animation: Gradient 15s ease infinite;
-  -moz-animation: Gradient 15s ease infinite;
   animation: Gradient 15s ease infinite;
-}
-
-@-webkit-keyframes Gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@-moz-keyframes Gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 @keyframes Gradient {

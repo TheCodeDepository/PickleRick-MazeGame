@@ -1,3 +1,10 @@
+$menuHeight: 65px+10px;
+@mixin transition {
+    transition-property: background-color opacity;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
 html,
 body {
     width: auto;
@@ -10,87 +17,86 @@ body {
     left: 0;
     right: 0;
 }
+
 #mazeContainer {
-    visibility: hidden;
+    transition-property: opacity;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+    opacity: 0;
     display: inline-block;
     background-color: rgba(0, 0, 0, 0.30);
     margin: auto;
-    padding-top: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
-    border: solid black 5px;
-    border-radius: 5px;
-    -webkit-animation: Gradient 15s ease infinite;
-    -moz-animation: Gradient 15s ease infinite;
-    animation: Gradient 15s ease infinite;
-    canvas{
+    canvas {
         margin: 0;
+        display: block;
+        border: solid 5px black;
     }
-
 }
 
+input[type=button],
+select {
+    @include transition;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.30);
+    height: 45px;
+    width: 150px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.70);
+    }
+    &:active {
+        background-color: black;
+    }
+    &:focus {
+        outline: none;
+    }
+}
 
 input {
     &[type=button] {
-        background-color: rgba(0, 0, 0, 0.30);
-        border: none;
-        border-radius: 5px;
-        color: white;
-        height: 45px;
-        padding: 10px;
-        text-align: center;
-        text-decoration: none;
         display: inline-block;
-        font-size: 15px;
-        &:hover {
-            background-color: black;
-        }
     }
 }
 
 .custom-select {
     display: inline-block;
     select {
-        height: 30px;
-        width: 100px;
-        border-radius: 0;
-        padding-left: 10px;
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
-        background-color: rgba(0, 0, 0, 0.30);
-        color: white;
-        border: none;
-        border-radius: 5px;
-        height: 45px;
-        font-size: 15px;
-
         background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVQ4T93TMQrCUAzG8V9x8QziiYSuXdzFC7h4AcELOPQAdXYovZCHEATlgQV5GFTe1ozJlz/kS1IpjKqw3wQBVyy++JI0y1GTe7DCBbMAckeNIQKk/BanALBB+16LtnDELoMcsM/BESDlz2heDR3WePwKSLo5eoxz3z6NNcFD+vu3ij14Aqz/DxGbKB7CAAAAAElFTkSuQmCC');
         background-repeat: no-repeat;
-        background-position: 75px center;
-
-        &:hover {
-            background-color: black;
-        }
-
+        background-position: 125px center;
     }
 }
 
-#message {
+#Message-Container {
     visibility: hidden;
-    
     color: white;
     display: block;
-    width: 400px;
-    height: 300px;
+    width: 100vw;
+    height: 100vh;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-left: -200px;
-    margin-top: -150px;
-    border: solid 1px black;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.30);
+    #message {
+        width: 300px;
+        height: 300px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-left: -150px;
+        margin-top: -150px;
+    }
 }
 
 #page {
@@ -100,7 +106,10 @@ input {
     width: 80vw;
     margin: auto;
     #menu {
-        margin: 1rem;
+        margin: auto;
+        padding: 10px;
+        height: 65px;
+        box-sizing: border-box;
         h1 {
             margin: 0;
             margin-bottom: 10px;
@@ -108,7 +117,6 @@ input {
             font-size: 3.2rem;
         }
     }
-
 }
 
 .border {
@@ -118,29 +126,64 @@ input {
 
 @media only screen and (min-height: 300px) {
     canvas {
-        width: 200px;
-        height: 200px;
+        width: 300px - $menuHeight;
+        height: 300px - $menuHeight;
+    }
+}
+
+@media only screen and (min-height: 400px) {
+    canvas {
+        width: 400px - $menuHeight;
+        height: 400px - $menuHeight;
     }
 }
 
 @media only screen and (min-height: 500px) {
     canvas {
-        width: 400px;
-        height: 400px;
+        width: 500px - $menuHeight;
+        height: 500px - $menuHeight;
+    }
+}
+
+@media only screen and (min-height: 600px) {
+    canvas {
+        width: 600px - $menuHeight;
+        height: 600px - $menuHeight;
     }
 }
 
 @media only screen and (min-height: 700px) {
     canvas {
-        width: 600px;
-        height: 600px;
+        width: 700px - $menuHeight;
+        height: 700px - $menuHeight;
+    }
+}
+
+@media only screen and (min-height: 800px) {
+    canvas {
+        width: 800px - $menuHeight;
+        height: 800px - $menuHeight;
     }
 }
 
 @media only screen and (min-height: 900px) {
     canvas {
-        width: 750px;
-        height: 750px;
+        width: 900px - $menuHeight;
+        height: 900px - $menuHeight;
+    }
+}
+
+@media only screen and (min-height: 1000px) {
+    canvas {
+        width: 1000px - $menuHeight;
+        height: 1000px - $menuHeight;
+    }
+}
+
+@media only screen and (min-height: 1100px) {
+    canvas {
+        width: 1100px - $menuHeight;
+        height: 1100px - $menuHeight;
     }
 }
 
@@ -154,33 +197,7 @@ input {
     color: #fff;
     background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
     background-size: 400% 400%;
-    -webkit-animation: Gradient 15s ease infinite;
-    -moz-animation: Gradient 15s ease infinite;
     animation: Gradient 15s ease infinite;
-}
-
-@-webkit-keyframes Gradient {
-    0% {
-        background-position: 0% 50%
-    }
-    50% {
-        background-position: 100% 50%
-    }
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-@-moz-keyframes Gradient {
-    0% {
-        background-position: 0% 50%
-    }
-    50% {
-        background-position: 100% 50%
-    }
-    100% {
-        background-position: 0% 50%
-    }
 }
 
 @keyframes Gradient {

@@ -1,10 +1,9 @@
-function Player(maze, ctx, cellSize, onComplete, sprite = null) {
-    
-    var drawSprite;
+function Player(maze, c, cellSize, onComplete, sprite = null) {
+    var ctx = c.getContext("2d");
+    var drawSprite;    
     var moves = 0;
     drawSprite = drawSpriteCircle;
     if (sprite != null) {
-        
         drawSprite = drawSpriteImg;
     }
 
@@ -13,28 +12,37 @@ function Player(maze, ctx, cellSize, onComplete, sprite = null) {
     var preCoord = new Coordinate(maze.startCoord().x, maze.startCoord().y);
     var halfCellSize = cellSize / 2;
 
-    function drawEnd(coord) {
-        ctx.beginPath();
-        ctx.rect((coord.x * cellSize) + 3, (coord.y * cellSize) + 3, cellSize - 6, cellSize - 6);
-        ctx.fillStyle = "green";
-        ctx.fill();
-    }
-
     function drawSpriteCircle(coord) {
         ctx.beginPath();
-        ctx.fillStyle = 'yellow';
-        ctx.arc(((coord.x + 1) * cellSize) - halfCellSize, ((coord.y + 1) * cellSize) - halfCellSize, halfCellSize - 2, 0, 2 * Math.PI);
+        ctx.fillStyle = "yellow";
+        ctx.arc(
+            (coord.x + 1) * cellSize - halfCellSize,
+            (coord.y + 1) * cellSize - halfCellSize,
+            halfCellSize - 2,
+            0,
+            2 * Math.PI
+        );
         ctx.fill();
         if (coord.x === maze.endCoord().x && coord.y === maze.endCoord().y) {
             (function () {
                 alert("you win!");
-            }());
+            })();
             player.unbindKeyDown();
         }
     }
 
     function drawSpriteImg(coord) {
-        ctx.drawImage(sprite, (coord.x * cellSize) +4, (coord.y * cellSize) +4, cellSize - 8, cellSize - 8);
+        ctx.drawImage(
+            sprite,
+            90,
+            46,
+            315,
+            407,
+            coord.x * cellSize + 4,
+            coord.y * cellSize + 4,
+            cellSize - 8,
+            cellSize - 8
+        );
         if (coord.x === maze.endCoord().x && coord.y === maze.endCoord().y) {
             onComplete(moves);
             player.unbindKeyDown();
@@ -42,7 +50,12 @@ function Player(maze, ctx, cellSize, onComplete, sprite = null) {
     }
 
     function removeSprite(coord) {
-        ctx.clearRect((coord.x * cellSize) + 4, (coord.y * cellSize) + 4, cellSize - 8, cellSize - 8);
+        ctx.clearRect(
+            coord.x * cellSize + 4,
+            coord.y * cellSize + 4,
+            cellSize - 8,
+            cellSize - 8
+        );
     }
 
     function check(e) {
@@ -50,6 +63,7 @@ function Player(maze, ctx, cellSize, onComplete, sprite = null) {
         var code = e.keyCode;
         moves++;
         switch (code) {
+            case 65:
             case 37: // west
                 if (cell.w == true) {
                     removeSprite(preCoord);
@@ -58,6 +72,7 @@ function Player(maze, ctx, cellSize, onComplete, sprite = null) {
                 }
 
                 break;
+            case 87:
             case 38: // north
                 if (cell.n == true) {
                     removeSprite(preCoord);
@@ -65,6 +80,7 @@ function Player(maze, ctx, cellSize, onComplete, sprite = null) {
                     drawSprite(preCoord);
                 }
                 break;
+            case 68:
             case 39: // east
                 if (cell.e == true) {
                     removeSprite(preCoord);
@@ -72,27 +88,25 @@ function Player(maze, ctx, cellSize, onComplete, sprite = null) {
                     drawSprite(preCoord);
                 }
                 break;
+            case 83:
             case 40: // south
                 if (cell.s == true) {
-
                     removeSprite(preCoord);
                     preCoord = new Coordinate(preCoord.x, preCoord.y + 1);
                     drawSprite(preCoord);
                 }
                 break;
-
         }
     }
 
     this.bindKeyDown = function () {
-        window.addEventListener('keydown', check, false);
+        window.addEventListener("keydown", check, false);
     };
     this.unbindKeyDown = function () {
-        window.removeEventListener('keydown', check, false);
+        window.removeEventListener("keydown", check, false);
     };
 
-
     drawSprite(maze.startCoord());
-    drawEnd(maze.endCoord());
+
     this.bindKeyDown();
 }

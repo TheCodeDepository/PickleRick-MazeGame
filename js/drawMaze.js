@@ -1,10 +1,10 @@
 function DrawMaze(Maze, ctx, cellSize) {
-    
     var map = Maze.map();
+
     function drawCell(xCord, yCord, cell) {
         var x = xCord * cellSize;
         var y = yCord * cellSize;
-        ctx.lineWidth=5;
+        ctx.lineWidth = 5;
 
         if (cell.n === false) {
             ctx.beginPath();
@@ -30,7 +30,6 @@ function DrawMaze(Maze, ctx, cellSize) {
             ctx.lineTo(x, y + cellSize);
             ctx.stroke();
         }
-
     }
 
     function drawMap() {
@@ -41,12 +40,38 @@ function DrawMaze(Maze, ctx, cellSize) {
         }
     }
 
+    function drawEnd(coord) {
+        var gridSize = 5;
+        var offset = 7;
+
+        var fraction = cellSize / gridSize - 2;
+        var colorSwap = true;
+        for (let y = 0; y < gridSize; y++) {
+            for (let x = 0; x < gridSize; x++) {
+                ctx.beginPath();
+                ctx.rect(
+                    coord.x * cellSize + x * fraction + 4.5,
+                    coord.y * cellSize + y * fraction + 4.5,
+                    fraction,
+                    fraction
+                );
+                if (colorSwap) {
+                    ctx.fillStyle = "rgba(0, 0, 0, 0.8)";
+                } else {
+                    ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+                }
+                ctx.fill();
+                colorSwap = !colorSwap;
+            }
+        }
+    }
+
     function clear() {
         var canvasSize = cellSize * map.length;
         ctx.clearRect(0, 0, canvasSize, canvasSize);
     }
 
-   clear();
-   drawMap();
-
+    clear();
+    drawMap();
+    drawEnd(Maze.endCoord());
 }
