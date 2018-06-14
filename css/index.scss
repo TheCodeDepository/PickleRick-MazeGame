@@ -26,7 +26,7 @@ body {
     display: inline-block;
     background-color: rgba(0, 0, 0, 0.30);
     margin: auto;
-    canvas {
+    #mazeCanvas {
         margin: 0;
         display: block;
         border: solid 5px black;
@@ -125,63 +125,63 @@ input {
 }
 
 @media only screen and (min-height: 300px) {
-    canvas {
+    #mazeCanvas {
         width: 300px - $menuHeight;
         height: 300px - $menuHeight;
     }
 }
 
 @media only screen and (min-height: 400px) {
-    canvas {
+    #mazeCanvas {
         width: 400px - $menuHeight;
         height: 400px - $menuHeight;
     }
 }
 
 @media only screen and (min-height: 500px) {
-    canvas {
+    #mazeCanvas {
         width: 500px - $menuHeight;
         height: 500px - $menuHeight;
     }
 }
 
 @media only screen and (min-height: 600px) {
-    canvas {
+    #mazeCanvas {
         width: 600px - $menuHeight;
         height: 600px - $menuHeight;
     }
 }
 
 @media only screen and (min-height: 700px) {
-    canvas {
+    #mazeCanvas {
         width: 700px - $menuHeight;
         height: 700px - $menuHeight;
     }
 }
 
 @media only screen and (min-height: 800px) {
-    canvas {
+    #mazeCanvas {
         width: 800px - $menuHeight;
         height: 800px - $menuHeight;
     }
 }
 
 @media only screen and (min-height: 900px) {
-    canvas {
+    #mazeCanvas {
         width: 900px - $menuHeight;
         height: 900px - $menuHeight;
     }
 }
 
 @media only screen and (min-height: 1000px) {
-    canvas {
+    #mazeCanvas {
         width: 1000px - $menuHeight;
         height: 1000px - $menuHeight;
     }
 }
 
 @media only screen and (min-height: 1100px) {
-    canvas {
+    #mazeCanvas {
         width: 1100px - $menuHeight;
         height: 1100px - $menuHeight;
     }

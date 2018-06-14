@@ -6,40 +6,42 @@ var maze, draw, player;
 // sprite.src = 'media/sprite.png';
 
 window.onload = function () {
-    sprite = defineSprite();
+    defineSprite();
 };
 
-function defineSprite(loaded) {
+function defineSprite() {
     var spr = new Image();
     var url = "https://78.media.tumblr.com/99dbdc2634a3695d60120eebe865a785/tumblr_onsimhGBbN1rgyab2o1_1280.png";
     spr.src = url + "?" + new Date().getTime();
     spr.setAttribute("crossOrigin", " ");
-    spr.onload = function () {
-        var canvas = document.createElement('canvas');
-        var context = canvas.getContext('2d');      
-        var diff = getDifficulty();
-        var cellSize = mazeCanvas.width / diff;
-        context.drawImage(sprite, 0, 0, cellSize,cellSize);
-        var imgData = ctx.getImageData(0, 0, sprite.width, sprite.width);
-        var factor = 1.25;
+    spr.onload = function changeBritness() {
+
+        //var virtCanvas = document.getElementById("canvasOne");//document.createElement('canvas'); 
+        var virtCanvas = document.createElement('canvas');
+        virtCanvas.width = 500;
+        virtCanvas.height = 500;
+        var context = virtCanvas.getContext('2d');
+
+        context.drawImage(spr, 0, 0, 500, 500);
+        var imgData = context.getImageData(0, 0, 500, 500);
+
+        var factor = 1.20;
         for (let i = 0; i < imgData.data.length; i += 4) {
             imgData.data[i] = imgData.data[i] * factor;
             imgData.data[i + 1] = imgData.data[i + 1] * factor;
             imgData.data[i + 2] = imgData.data[i + 2] * factor;
         }
         context.putImageData(imgData, 0, 0);
+
         sprite = new Image();
-        sprite.src = mazeCanvas.toDataURL();
-        
+        sprite.src = virtCanvas.toDataURL();
     };
-    return spr;
 }
 
 
 
 function makeMaze() {
     document.getElementById("mazeCanvas").classList.add("border");
-    defineSprite();
     if (player != undefined) {
         player.unbindKeyDown();
     }

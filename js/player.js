@@ -34,10 +34,10 @@ function Player(maze, c, cellSize, onComplete, sprite = null) {
     function drawSpriteImg(coord) {
         ctx.drawImage(
             sprite,
-            90,
-            46,
-            315,
-            407,
+            72,
+            29,
+            320,
+            435,
             coord.x * cellSize + 4,
             coord.y * cellSize + 4,
             cellSize - 8,
