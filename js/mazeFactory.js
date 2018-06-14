@@ -3,59 +3,58 @@ function Maze(Width, Height) {
     var width = Width;
     var height = Height;
     var startCoord, endCoord;
-    var dirs = ['n', 's', 'e', 'w'];
+    var dirs = ["n", "s", "e", "w"];
     var modDir = {
-        'n': {
+        n: {
             y: -1,
             x: 0,
-            o: 's'
+            o: "s"
         },
-        's': {
+        s: {
             y: 1,
             x: 0,
-            o: 'n'
+            o: "n"
         },
-        'e': {
+        e: {
             y: 0,
             x: 1,
-            o: 'w'
+            o: "w"
         },
-        'w': {
+        w: {
             y: 0,
             x: -1,
-            o: 'e'
+            o: "e"
         }
     };
 
-    this.map = function() {
+    this.map = function () {
         return mazeMap;
-    }
-    this.startCoord = function() {
+    };
+    this.startCoord = function () {
         return startCoord;
-    }
-    this.endCoord = function() {
+    };
+    this.endCoord = function () {
         return endCoord;
-    }
+    };
 
     function genMap() {
         mazeMap = new Array(height);
         for (y = 0; y < height; y++) {
-
             mazeMap[y] = new Array(width);
             for (x = 0; x < width; ++x) {
                 mazeMap[y][x] = {
-                    'n': false,
-                    's': false,
-                    'e': false,
-                    'w': false,
-                    'visited': false,
-                    'priorPos': null
+                    n: false,
+                    s: false,
+                    e: false,
+                    w: false,
+                    visited: false,
+                    priorPos: null
                 };
             }
         }
-    };
+    }
 
-   function defineMaze() {
+    function defineMaze() {
         var isComp = false;
         var move = false;
         var cellsVisited = 1;
@@ -69,12 +68,11 @@ function Maze(Width, Height) {
 
             if (numLoops >= maxLoops) {
                 shuffle(dirs);
-                maxLoops = rand(height / 5) + 1;
+                maxLoops = Math.round(rand(height / 8));
                 numLoops = 0;
             }
             numLoops++;
             for (index = 0; index < dirs.length; index++) {
-
                 var direction = dirs[index];
                 var nx = pos.x + modDir[direction].x;
                 var ny = pos.y + modDir[direction].y;
@@ -95,7 +93,6 @@ function Maze(Width, Height) {
                         //Recursively call this method on the next tile
                         move = true;
                         break;
-
                     }
                 }
             }
@@ -108,7 +105,7 @@ function Maze(Width, Height) {
                 isComp = true;
             }
         }
-    };
+    }
 
     function defineStartEnd() {
         switch (rand(4)) {
