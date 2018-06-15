@@ -2,11 +2,39 @@ var mazeCanvas = document.getElementById("mazeCanvas");
 var ctx = mazeCanvas.getContext("2d");
 var sprite;
 var maze, draw, player;
-
+var cellSize;
+var difficulty;
 // sprite.src = 'media/sprite.png';
 
 window.onload = function () {
+    if (window.innerHeight < window.innerWidth) {
+        ctx.canvas.width = window.innerHeight - (75 + (window.innerHeight / 100));
+        ctx.canvas.height = window.innerHeight - (75 + (window.innerHeight / 100));
+    }
+    else{
+        ctx.canvas.width = window.innerWidth - (75 + (window.innerWidth / 100));
+        ctx.canvas.height = window.innerWidth - (75 + (window.innerWidth / 100));
+    }
+    cellSize = mazeCanvas.width / difficulty;
     defineSprite();
+};
+
+window.onresize = function (event) {
+    if (window.innerHeight < window.innerWidth) {
+        ctx.canvas.width = window.innerHeight - (75 + (window.innerHeight / 100));
+        ctx.canvas.height = window.innerHeight - (75 + (window.innerHeight / 100));
+    }
+    else{
+        ctx.canvas.width = window.innerWidth - (75 + (window.innerWidth / 100));
+        ctx.canvas.height = window.innerWidth - (75 + (window.innerWidth / 100));
+    }
+
+    cellSize = mazeCanvas.width / difficulty;
+    if (player != null) {
+        draw.redrawMaze(cellSize);
+        player.redrawPlayer(cellSize);
+    }
+
 };
 
 function defineSprite() {
@@ -16,7 +44,6 @@ function defineSprite() {
     spr.setAttribute("crossOrigin", " ");
     spr.onload = function changeBritness() {
 
-        //var virtCanvas = document.getElementById("canvasOne");//document.createElement('canvas'); 
         var virtCanvas = document.createElement('canvas');
         virtCanvas.width = 500;
         virtCanvas.height = 500;
@@ -44,11 +71,11 @@ function makeMaze() {
     document.getElementById("mazeCanvas").classList.add("border");
     if (player != undefined) {
         player.unbindKeyDown();
+        player = null;
     }
-    var diff = getDifficulty();
-    var cellSize = mazeCanvas.width / diff;
-    var halfCellSize = cellSize / 2;
-    maze = new Maze(diff, diff);
+    difficulty = getDifficulty();
+    cellSize = mazeCanvas.width / difficulty;
+    maze = new Maze(difficulty, difficulty);
     draw = new DrawMaze(maze, ctx, cellSize);
     player = new Player(maze, mazeCanvas, cellSize, displayVictoryMess, sprite);
     if (document.getElementById("mazeContainer").style.opacity < "100") {

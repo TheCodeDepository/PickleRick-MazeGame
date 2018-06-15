@@ -1,14 +1,23 @@
-function DrawMaze(Maze, ctx, cellSize) {
+function DrawMaze(Maze, ctx, cellsize) {
     var map = Maze.map();
+    var cellSize = cellsize;
+    
+    this.redrawMaze = function (cellsize) {
+        cellSize = cellsize;
+        drawMap();
+        drawEnd(Maze.endCoord());
+    };
+
 
     function drawCell(xCord, yCord, cell) {
         var x = xCord * cellSize;
         var y = yCord * cellSize;
-        ctx.lineWidth = 5;
+        ctx.lineWidth = cellSize/ 50;
 
         if (cell.n === false) {
             ctx.beginPath();
             ctx.moveTo(x, y);
+            
             ctx.lineTo(x + cellSize, y);
             ctx.stroke();
         }

@@ -1,16 +1,51 @@
-function Player(maze, c, cellSize, onComplete, sprite = null) {
+function Player(maze, c, _cellsize, onComplete, sprite = null) {
     var ctx = c.getContext("2d");
-    var drawSprite;    
+    var drawSprite;
     var moves = 0;
     drawSprite = drawSpriteCircle;
     if (sprite != null) {
         drawSprite = drawSpriteImg;
     }
-
     var player = this;
     var map = maze.map();
     var preCoord = new Coordinate(maze.startCoord().x, maze.startCoord().y);
+    var cellSize = _cellsize;
     var halfCellSize = cellSize / 2;
+
+    $("#mazeCanvas").touchwipe({
+        wipeLeft: function () {
+            check({
+                keyCode: 37
+            });
+            console.log("left");
+        },
+        wipeRight: function () {
+            check({
+                keyCode: 39
+            });
+            console.log("right");
+        },
+        wipeUp: function () {
+            check({
+                keyCode: 40
+            });
+            console.log("up");
+        },
+        wipeDown: function () {
+            check({
+                keyCode: 38
+            })
+            console.log("down");;
+        },
+        min_move_x: 20,
+        min_move_y: 20,
+        preventDefaultEvents: true
+    });
+
+    this.redrawPlayer = function (_cellsize) {
+        cellSize = _cellsize;        
+        drawSpriteImg(preCoord);
+    }
 
     function drawSpriteCircle(coord) {
         ctx.beginPath();
