@@ -103,13 +103,13 @@ function Maze(Width, Height) {
             }
 
             if (!move) {
-                //If it failed to find a direction and didnt get back to the EndPoint, move the current position back to the prior cell and Recall the method.
+                //  If it failed to find a direction, 
+                //  move the current position back to the prior cell and Recall the method.
                 pos = mazeMap[pos.x][pos.y].priorPos;
             }
             if (numCells == cellsVisited) {
                 isComp = true;
-            }
-        }
+            }        }
     }
 
     function defineStartEnd() {

@@ -8,7 +8,7 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     }
     var player = this;
     var map = maze.map();
-    var preCoord = {
+    var cellCoords = {
         x: maze.startCoord().x,
         y: maze.startCoord().y
     };
@@ -19,7 +19,7 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
 
     this.redrawPlayer = function (_cellsize) {
         cellSize = _cellsize;
-        drawSpriteImg(preCoord);
+        drawSpriteImg(cellCoords);
     }
 
     function drawSpriteCircle(coord) {
@@ -42,14 +42,14 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     function drawSpriteImg(coord) {
         ctx.drawImage(
             sprite,
-            72,
-            29,
-            320,
-            435,
-            coord.x * cellSize + 2,
-            coord.y * cellSize + 2,
-            cellSize - 4,
-            cellSize - 4
+            0,
+            0,
+            sprite.width,
+            sprite.height,
+            coord.x * cellSize + 1,
+            coord.y * cellSize + 1,
+            cellSize - 2,
+            cellSize - 2
         );
         if (coord.x === maze.endCoord().x && coord.y === maze.endCoord().y) {
             onComplete(moves);
@@ -67,54 +67,51 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     }
 
     function check(e) {
-        console.log(e);
-        var cell = map[preCoord.x][preCoord.y];
-        var code = e.keyCode;
+        var cell = map[cellCoords.x][cellCoords.y];
         moves++;
-        switch (code) {
+        switch (e.keyCode) {
             case 65:
             case 37: // west
                 if (cell.w == true) {
-                    removeSprite(preCoord);
-                    preCoord = {
-                        x: preCoord.x - 1,
-                        y: preCoord.y
+                    removeSprite(cellCoords);
+                    cellCoords = {
+                        x: cellCoords.x - 1,
+                        y: cellCoords.y
                     };
-                    drawSprite(preCoord);
+                    drawSprite(cellCoords);
                 }
-
                 break;
             case 87:
             case 38: // north
                 if (cell.n == true) {
-                    removeSprite(preCoord);
-                    preCoord = {
-                        x: preCoord.x,
-                        y: preCoord.y - 1
+                    removeSprite(cellCoords);
+                    cellCoords = {
+                        x: cellCoords.x,
+                        y: cellCoords.y - 1
                     };
-                    drawSprite(preCoord);
+                    drawSprite(cellCoords);
                 }
                 break;
             case 68:
             case 39: // east
                 if (cell.e == true) {
-                    removeSprite(preCoord);
-                    preCoord = {
-                        x: preCoord.x + 1,
-                        y: preCoord.y
+                    removeSprite(cellCoords);
+                    cellCoords = {
+                        x: cellCoords.x + 1,
+                        y: cellCoords.y
                     };
-                    drawSprite(preCoord);
+                    drawSprite(cellCoords);
                 }
                 break;
             case 83:
             case 40: // south
                 if (cell.s == true) {
-                    removeSprite(preCoord);
-                    preCoord = {
-                        x: preCoord.x,
-                        y: preCoord.y + 1
+                    removeSprite(cellCoords);
+                    cellCoords = {
+                        x: cellCoords.x,
+                        y: cellCoords.y + 1
                     };
-                    drawSprite(preCoord);
+                    drawSprite(cellCoords);
                 }
                 break;
         }
