@@ -1,6 +1,7 @@
 var mazeCanvas = document.getElementById("mazeCanvas");
 var ctx = mazeCanvas.getContext("2d");
 var sprite;
+var finishSprite;
 var maze, draw, player;
 var cellSize;
 var difficulty;
@@ -10,21 +11,22 @@ window.onload = function () {
     if (window.innerHeight < window.innerWidth) {
         ctx.canvas.width = window.innerHeight - (75 + (window.innerHeight / 100));
         ctx.canvas.height = window.innerHeight - (75 + (window.innerHeight / 100));
-    }
-    else{
+    } else {
         ctx.canvas.width = window.innerWidth - (75 + (window.innerWidth / 100));
         ctx.canvas.height = window.innerWidth - (75 + (window.innerWidth / 100));
     }
     cellSize = mazeCanvas.width / difficulty;
     defineSprite();
+    finishSprite = new Image();
+    finishSprite.src = "/media/finishSprite.png"
+    //finishSprite = changeBrightness(1.20, finishSprite);
 };
 
-window.onresize = function (event) {
+window.onresize = function () {
     if (window.innerHeight < window.innerWidth) {
         ctx.canvas.width = window.innerHeight - (75 + (window.innerHeight / 100));
         ctx.canvas.height = window.innerHeight - (75 + (window.innerHeight / 100));
-    }
-    else{
+    } else {
         ctx.canvas.width = window.innerWidth - (75 + (window.innerWidth / 100));
         ctx.canvas.height = window.innerWidth - (75 + (window.innerWidth / 100));
     }
@@ -42,32 +44,16 @@ function defineSprite() {
     var url = "https://78.media.tumblr.com/99dbdc2634a3695d60120eebe865a785/tumblr_onsimhGBbN1rgyab2o1_1280.png";
     spr.src = url + "?" + new Date().getTime();
     spr.setAttribute("crossOrigin", " ");
-    spr.onload = function changeBritness() {
-
-        var virtCanvas = document.createElement('canvas');
-        virtCanvas.width = 500;
-        virtCanvas.height = 500;
-        var context = virtCanvas.getContext('2d');
-
-        context.drawImage(spr, 0, 0, 500, 500);
-        var imgData = context.getImageData(0, 0, 500, 500);
-
-        var factor = 1.20;
-        for (let i = 0; i < imgData.data.length; i += 4) {
-            imgData.data[i] = imgData.data[i] * factor;
-            imgData.data[i + 1] = imgData.data[i + 1] * factor;
-            imgData.data[i + 2] = imgData.data[i + 2] * factor;
-        }
-        context.putImageData(imgData, 0, 0);
-
-        sprite = new Image();
-        sprite.src = virtCanvas.toDataURL();
-    };
+    spr.onload = function () {
+        sprite = changeBrightness(1.20, spr)
+    }
 }
 
 
 
-function makeMaze() {
+function makeMaze() { 
+   console.log(finishSprite);
+   console.log(sprite);
     document.getElementById("mazeCanvas").classList.add("border");
     if (player != undefined) {
         player.unbindKeyDown();
@@ -76,7 +62,7 @@ function makeMaze() {
     difficulty = getDifficulty();
     cellSize = mazeCanvas.width / difficulty;
     maze = new Maze(difficulty, difficulty);
-    draw = new DrawMaze(maze, ctx, cellSize);
+    draw = new DrawMaze(maze, ctx, cellSize, finishSprite);
     player = new Player(maze, mazeCanvas, cellSize, displayVictoryMess, sprite);
     if (document.getElementById("mazeContainer").style.opacity < "100") {
         document.getElementById("mazeContainer").style.opacity = "100";
