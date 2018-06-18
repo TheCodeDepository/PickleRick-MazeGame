@@ -1,8 +1,3 @@
-function Coordinate(X, Y) {
-    this.x = X;
-    this.y = Y;
-}
-
 function rand(max) {
     return (Math.floor(Math.random() * max));
 }
@@ -15,10 +10,10 @@ function shuffle(a) {
     return a;
 }
 
-function changeBrightness(factor,sprite) {
+function changeBrightness(factor, sprite) {
     var virtCanvas = document.createElement('canvas');
     virtCanvas.width = 500;
-    virtCanvas.height = 500;    
+    virtCanvas.height = 500;
     var context = virtCanvas.getContext('2d');
     context.drawImage(sprite, 0, 0, 500, 500);
 
@@ -35,5 +30,18 @@ function changeBrightness(factor,sprite) {
     spriteOutput.src = virtCanvas.toDataURL();
     virtCanvas.remove();
     return spriteOutput;
-};
+}
 
+function displayVictoryMess(moves) {
+    document.getElementById("moves").innerHTML = "You Moved " + moves + " Steps.";
+    toggleVisablity("Message-Container");
+    document.getElementById("okBtn").focus();
+}
+
+function toggleVisablity(id) {
+    if (document.getElementById(id).style.visibility == "visible") {
+        document.getElementById(id).style.visibility = "hidden";
+    } else {
+        document.getElementById(id).style.visibility = "visible";
+    }
+}

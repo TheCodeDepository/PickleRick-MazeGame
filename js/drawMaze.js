@@ -2,42 +2,24 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
     var map = Maze.map();
     var cellSize = cellsize;
     var drawEndMethod;
-    var previousCell = {
-        n: true,
-        s: true,
-        e: true,
-        w: true,
-        visited: false,
-        priorPos: null
-    };;
+    ctx.lineWidth = cellSize / 40;
+
     this.redrawMaze = function (cellsize) {
         cellSize = cellsize;
+        ctx.lineWidth = cellSize / 40;
         drawMap();
         drawEndMethod();
     };
 
     function drawCell(xCord, yCord, cell) {
         var x = xCord * cellSize;
-        var y = yCord * cellSize;
-        ctx.lineWidth = cellSize / 50;
+        var y = yCord * cellSize;    
 
         if (cell.n == false) {
             ctx.beginPath();
-            if (cell.e == false) {
-                ctx.arc((x + cellsize) - cellsize / 10 , y + cellsize / 10, cellsize / 10, 1.50 * Math.PI, 2 * Math.PI);
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.moveTo(x, y);
-                ctx.lineTo(x + (cellSize - (cellSize/10)) , y);
-                ctx.stroke();
-
-            } else {
-                
-                ctx.moveTo(x, y );
-                ctx.lineTo(x + cellsize, y);
-                ctx.stroke();
-            }
-
+            ctx.moveTo(x, y);
+            ctx.lineTo(x + cellsize, y);
+            ctx.stroke();
         }
         if (cell.s === false) {
             ctx.beginPath();
@@ -57,7 +39,7 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
             ctx.lineTo(x, y + cellSize);
             ctx.stroke();
         }
-        previousCell = cell;
+  
     }
 
     function drawMap() {
@@ -100,14 +82,14 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
         var coord = Maze.endCoord();
         ctx.drawImage(
             endSprite,
-            1,
-            0,
-            1230,
-            1265,
+            2,
+            2,
+            500,
+            500,
             coord.x * cellSize + 1,
             coord.y * cellSize + 1,
-            cellSize - 1,
-            cellSize - 1
+            cellSize - 2,
+            cellSize - 2
         );
     }
 

@@ -8,7 +8,10 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     }
     var player = this;
     var map = maze.map();
-    var preCoord = new Coordinate(maze.startCoord().x, maze.startCoord().y);
+    var preCoord = {
+        x: maze.startCoord().x,
+        y: maze.startCoord().y
+    };
     var cellSize = _cellsize;
     var halfCellSize = cellSize / 2;
 
@@ -73,7 +76,10 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
             case 37: // west
                 if (cell.w == true) {
                     removeSprite(preCoord);
-                    preCoord = new Coordinate(preCoord.x - 1, preCoord.y);
+                    preCoord = {
+                        x: preCoord.x - 1,
+                        y: preCoord.y
+                    };
                     drawSprite(preCoord);
                 }
 
@@ -82,7 +88,10 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
             case 38: // north
                 if (cell.n == true) {
                     removeSprite(preCoord);
-                    preCoord = new Coordinate(preCoord.x, preCoord.y - 1);
+                    preCoord = {
+                        x: preCoord.x,
+                        y: preCoord.y - 1
+                    };
                     drawSprite(preCoord);
                 }
                 break;
@@ -90,7 +99,10 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
             case 39: // east
                 if (cell.e == true) {
                     removeSprite(preCoord);
-                    preCoord = new Coordinate(preCoord.x + 1, preCoord.y);
+                    preCoord = {
+                        x: preCoord.x + 1,
+                        y: preCoord.y
+                    };
                     drawSprite(preCoord);
                 }
                 break;
@@ -98,7 +110,10 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
             case 40: // south
                 if (cell.s == true) {
                     removeSprite(preCoord);
-                    preCoord = new Coordinate(preCoord.x, preCoord.y + 1);
+                    preCoord = {
+                        x: preCoord.x,
+                        y: preCoord.y + 1
+                    };
                     drawSprite(preCoord);
                 }
                 break;
@@ -133,7 +148,7 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
                         });
                         break;
                 }
-                
+
             },
             threshold: 0
         });

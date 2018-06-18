@@ -15,11 +15,19 @@ window.onload = function () {
         ctx.canvas.width = window.innerWidth - (75 + (window.innerWidth / 100));
         ctx.canvas.height = window.innerWidth - (75 + (window.innerWidth / 100));
     }
-    cellSize = mazeCanvas.width / difficulty;
-    defineSprite();
+
+    //Load and edit sprites
+    sprite = new Image();
+    sprite.src = "/media/sprite.png"
+    sprite.onload = function () {
+        sprite = changeBrightness(1.20, sprite)
+    }
     finishSprite = new Image();
     finishSprite.src = "/media/finishSprite.png"
-    //finishSprite = changeBrightness(1.20, finishSprite);
+    finishSprite.onload = function () {
+        finishSprite = changeBrightness(1.10, finishSprite)
+    }
+
 };
 
 window.onresize = function () {
@@ -30,60 +38,27 @@ window.onresize = function () {
         ctx.canvas.width = window.innerWidth - (75 + (window.innerWidth / 100));
         ctx.canvas.height = window.innerWidth - (75 + (window.innerWidth / 100));
     }
-
     cellSize = mazeCanvas.width / difficulty;
     if (player != null) {
         draw.redrawMaze(cellSize);
         player.redrawPlayer(cellSize);
     }
-
 };
 
-function defineSprite() {
-    var spr = new Image();
-    var url = "https://78.media.tumblr.com/99dbdc2634a3695d60120eebe865a785/tumblr_onsimhGBbN1rgyab2o1_1280.png";
-    spr.src = url + "?" + new Date().getTime();
-    spr.setAttribute("crossOrigin", " ");
-    spr.onload = function () {
-        sprite = changeBrightness(1.20, spr)
-    }
-}
 
-
-
-function makeMaze() { 
-   console.log(finishSprite);
-   console.log(sprite);
+function makeMaze() {
     document.getElementById("mazeCanvas").classList.add("border");
     if (player != undefined) {
         player.unbindKeyDown();
         player = null;
     }
-    difficulty = getDifficulty();
+    var e = document.getElementById("diffSelect");
+    difficulty = e.options[e.selectedIndex].value;
     cellSize = mazeCanvas.width / difficulty;
     maze = new Maze(difficulty, difficulty);
     draw = new DrawMaze(maze, ctx, cellSize, finishSprite);
     player = new Player(maze, mazeCanvas, cellSize, displayVictoryMess, sprite);
     if (document.getElementById("mazeContainer").style.opacity < "100") {
         document.getElementById("mazeContainer").style.opacity = "100";
-    }
-}
-
-function displayVictoryMess(moves) {
-    document.getElementById("moves").innerHTML = "You Moved " + moves + " Steps.";
-    toggleVisablity("Message-Container");
-    document.getElementById("okBtn").focus();
-}
-
-function getDifficulty() {
-    var e = document.getElementById("diffSelect");
-    return e.options[e.selectedIndex].value;
-}
-
-function toggleVisablity(id) {
-    if (document.getElementById(id).style.visibility == "visible") {
-        document.getElementById(id).style.visibility = "hidden";
-    } else {
-        document.getElementById(id).style.visibility = "visible";
     }
 }

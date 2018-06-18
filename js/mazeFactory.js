@@ -60,7 +60,10 @@ function Maze(Width, Height) {
         var cellsVisited = 1;
         var numLoops = 0;
         var maxLoops = 0;
-        var pos = new Coordinate(0, 0); //this.endCoord;
+        var pos = {
+            x: 0,
+            y: 0
+        };
         var numCells = width * height;
         while (!isComp) {
             move = false;
@@ -87,8 +90,10 @@ function Maze(Width, Height) {
                         //Set Currentcell as next cells Prior visited
                         mazeMap[nx][ny].priorPos = pos;
                         //Update Cell position to newly visited location
-                        pos = new Coordinate(nx, ny);
-
+                        pos = {
+                            x: nx,
+                            y: ny
+                        };
                         cellsVisited++;
                         //Recursively call this method on the next tile
                         move = true;
@@ -110,20 +115,44 @@ function Maze(Width, Height) {
     function defineStartEnd() {
         switch (rand(4)) {
             case 0:
-                startCoord = new Coordinate(0, 0);
-                endCoord = new Coordinate(height - 1, width - 1);
+                startCoord = {
+                    x: 0,
+                    y: 0
+                };
+                endCoord = {
+                    x: height - 1,
+                    y: width - 1
+                };
                 break;
             case 1:
-                startCoord = new Coordinate(0, width - 1);
-                endCoord = new Coordinate(height - 1, 0);
+                startCoord = {
+                    x: 0,
+                    y: width - 1
+                };
+                endCoord = {
+                    x: height - 1,
+                    y: 0
+                };
                 break;
             case 2:
-                startCoord = new Coordinate(height - 1, 0);
-                endCoord = new Coordinate(0, width - 1);
+                startCoord = {
+                    x: height - 1,
+                    y: 0
+                };
+                endCoord = {
+                    x: 0,
+                    y: width - 1
+                };
                 break;
             case 3:
-                startCoord = new Coordinate(height - 1, width - 1);
-                endCoord = new Coordinate(0, 0);
+                startCoord = {
+                    x: height - 1,
+                    y: width - 1
+                };
+                endCoord = {
+                    x: 0,
+                    y: 0
+                };
                 break;
         }
     }
