@@ -1,16 +1,23 @@
-function Player(maze, c, cellSize, onComplete, sprite = null) {
+function Player(maze, c, _cellsize, onComplete, sprite = null) {
     var ctx = c.getContext("2d");
-    var drawSprite;    
+    var drawSprite;
     var moves = 0;
     drawSprite = drawSpriteCircle;
     if (sprite != null) {
         drawSprite = drawSpriteImg;
     }
-
     var player = this;
     var map = maze.map();
     var preCoord = new Coordinate(maze.startCoord().x, maze.startCoord().y);
+    var cellSize = _cellsize;
     var halfCellSize = cellSize / 2;
+
+
+
+    this.redrawPlayer = function (_cellsize) {
+        cellSize = _cellsize;
+        drawSpriteImg(preCoord);
+    }
 
     function drawSpriteCircle(coord) {
         ctx.beginPath();
@@ -24,9 +31,7 @@ function Player(maze, c, cellSize, onComplete, sprite = null) {
         );
         ctx.fill();
         if (coord.x === maze.endCoord().x && coord.y === maze.endCoord().y) {
-            (function () {
-                alert("you win!");
-            })();
+            onComplete(moves);
             player.unbindKeyDown();
         }
     }
@@ -38,10 +43,10 @@ function Player(maze, c, cellSize, onComplete, sprite = null) {
             29,
             320,
             435,
-            coord.x * cellSize + 4,
-            coord.y * cellSize + 4,
-            cellSize - 8,
-            cellSize - 8
+            coord.x * cellSize + 2,
+            coord.y * cellSize + 2,
+            cellSize - 4,
+            cellSize - 4
         );
         if (coord.x === maze.endCoord().x && coord.y === maze.endCoord().y) {
             onComplete(moves);
@@ -51,14 +56,15 @@ function Player(maze, c, cellSize, onComplete, sprite = null) {
 
     function removeSprite(coord) {
         ctx.clearRect(
-            coord.x * cellSize + 4,
-            coord.y * cellSize + 4,
-            cellSize - 8,
-            cellSize - 8
+            coord.x * cellSize + 2,
+            coord.y * cellSize + 2,
+            cellSize - 4,
+            cellSize - 4
         );
     }
 
     function check(e) {
+        console.log(e);
         var cell = map[preCoord.x][preCoord.y];
         var code = e.keyCode;
         moves++;
@@ -101,9 +107,41 @@ function Player(maze, c, cellSize, onComplete, sprite = null) {
 
     this.bindKeyDown = function () {
         window.addEventListener("keydown", check, false);
+
+        $("#mazeCanvas").swipe({
+            swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
+                console.log(direction)
+                switch (direction) {
+                    case "up":
+                        check({
+                            keyCode: 38
+                        });
+                        break;
+                    case "down":
+                        check({
+                            keyCode: 40
+                        })
+                        break;
+                    case "left":
+                        check({
+                            keyCode: 37
+                        });
+                        break;
+                    case "right":
+                        check({
+                            keyCode: 39
+                        });
+                        break;
+                }
+                
+            },
+            threshold: 0
+        });
     };
+
     this.unbindKeyDown = function () {
         window.removeEventListener("keydown", check, false);
+        $("#mazeCanvas").swipe("destroy");
     };
 
     drawSprite(maze.startCoord());

@@ -7,9 +7,9 @@ $menuHeight: 65px+10px;
 
 html,
 body {
-    width: auto;
-    height: auto;
-    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
     padding: 0;
     margin: 0;
     top: 0;
@@ -22,10 +22,12 @@ body {
     transition-property: opacity;
     transition-duration: 1s;
     transition-timing-function: linear;
+    top: $menuHeight;
     opacity: 0;
     display: inline-block;
     background-color: rgba(0, 0, 0, 0.30);
     margin: auto;
+
     #mazeCanvas {
         margin: 0;
         display: block;
@@ -103,7 +105,7 @@ input {
     font-family: "Segoe UI", Arial, sans-serif;
     text-align: center;
     height: auto;
-    width: 80vw;
+    width: auto;
     margin: auto;
     #menu {
         margin: auto;
@@ -124,68 +126,7 @@ input {
     border-radius: 5px;
 }
 
-@media only screen and (min-height: 300px) {
-    #mazeCanvas {
-        width: 300px - $menuHeight;
-        height: 300px - $menuHeight;
-    }
-}
 
-@media only screen and (min-height: 400px) {
-    #mazeCanvas {
-        width: 400px - $menuHeight;
-        height: 400px - $menuHeight;
-    }
-}
-
-@media only screen and (min-height: 500px) {
-    #mazeCanvas {
-        width: 500px - $menuHeight;
-        height: 500px - $menuHeight;
-    }
-}
-
-@media only screen and (min-height: 600px) {
-    #mazeCanvas {
-        width: 600px - $menuHeight;
-        height: 600px - $menuHeight;
-    }
-}
-
-@media only screen and (min-height: 700px) {
-    #mazeCanvas {
-        width: 700px - $menuHeight;
-        height: 700px - $menuHeight;
-    }
-}
-
-@media only screen and (min-height: 800px) {
-    #mazeCanvas {
-        width: 800px - $menuHeight;
-        height: 800px - $menuHeight;
-    }
-}
-
-@media only screen and (min-height: 900px) {
-    #mazeCanvas {
-        width: 900px - $menuHeight;
-        height: 900px - $menuHeight;
-    }
-}
-
-@media only screen and (min-height: 1000px) {
-    #mazeCanvas {
-        width: 1000px - $menuHeight;
-        height: 1000px - $menuHeight;
-    }
-}
-
-@media only screen and (min-height: 1100px) {
-    #mazeCanvas {
-        width: 1100px - $menuHeight;
-        height: 1100px - $menuHeight;
-    }
-}
 
 #gradient {
     z-index: -1;
