@@ -47,7 +47,7 @@ window.onresize = function () {
 
 
 function makeMaze() {
-    document.getElementById("mazeCanvas").classList.add("border");
+    //document.getElementById("mazeCanvas").classList.add("border");
     if (player != undefined) {
         player.unbindKeyDown();
         player = null;

@@ -4,8 +4,8 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
     var drawEndMethod;
     ctx.lineWidth = cellSize / 40;
 
-    this.redrawMaze = function (cellsize) {
-        cellSize = cellsize;
+    this.redrawMaze = function (size) {
+        cellSize = size;
         ctx.lineWidth = cellSize / 40;
         drawMap();
         drawEndMethod();
@@ -18,7 +18,7 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
         if (cell.n == false) {
             ctx.beginPath();
             ctx.moveTo(x, y);
-            ctx.lineTo(x + cellsize, y);
+            ctx.lineTo(x + cellSize, y);
             ctx.stroke();
         }
         if (cell.s === false) {
