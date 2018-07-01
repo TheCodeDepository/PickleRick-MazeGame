@@ -124,7 +124,7 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     this.bindKeyDown = function () {
         window.addEventListener("keydown", check, false);
 
-        $("#mazeCanvas").swipe({
+        $("#view").swipe({
             swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
                 console.log(direction);
                 switch (direction) {

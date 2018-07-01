@@ -31,7 +31,7 @@ body {
     #mazeCanvas {
         margin: 0;
         display: block;
-        //border: solid 5px black;
+        border: solid 1px black;
     }
 }
 
@@ -87,6 +87,7 @@ select {
     bottom: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.30);
+    z-index: 1;
     #message {
         width: 300px;
         height: 300px;
@@ -159,3 +160,10 @@ select {
         background-position: 0% 50%
     }
 }
+
+ /* Extra small devices (phones, 600px and down) */
+ @media only screen and (max-width: 400px) {
+     input, select{
+         width: 120px;
+     }
+ }
