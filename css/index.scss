@@ -35,7 +35,7 @@ body {
     }
 }
 
-input[type=button],
+input,
 select {
     @include transition;
     cursor: pointer;
@@ -46,9 +46,11 @@ select {
     border: none;
     border-radius: 5px;
     color: white;
+    display: inline-block;
     font-size: 15px;
     text-align: center;
     text-decoration: none;
+    appearance: none;
     &:hover {
         background-color: rgba(0, 0, 0, 0.70);
     }
@@ -60,11 +62,6 @@ select {
     }
 }
 
-input {
-    &[type=button] {
-        display: inline-block;
-    }
-}
 
 .custom-select {
     display: inline-block;

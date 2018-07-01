@@ -20,7 +20,7 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     this.redrawPlayer = function (_cellsize) {
         cellSize = _cellsize;
         drawSpriteImg(cellCoords);
-    }
+    };
 
     function drawSpriteCircle(coord) {
         ctx.beginPath();
@@ -40,16 +40,18 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     }
 
     function drawSpriteImg(coord) {
+        var offsetLeft = cellSize / 50;
+        var offsetRight = cellSize / 25;
         ctx.drawImage(
             sprite,
             0,
             0,
             sprite.width,
             sprite.height,
-            coord.x * cellSize + 1,
-            coord.y * cellSize + 1,
-            cellSize - 2,
-            cellSize - 2
+            coord.x * cellSize + offsetLeft,
+            coord.y * cellSize + offsetLeft,
+            cellSize - offsetRight,
+            cellSize - offsetRight
         );
         if (coord.x === maze.endCoord().x && coord.y === maze.endCoord().y) {
             onComplete(moves);
@@ -58,11 +60,13 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
     }
 
     function removeSprite(coord) {
+        var offsetLeft = cellSize / 50;
+        var offsetRight = cellSize / 25;
         ctx.clearRect(
-            coord.x * cellSize + 2,
-            coord.y * cellSize + 2,
-            cellSize - 4,
-            cellSize - 4
+            coord.x * cellSize + offsetLeft,
+            coord.y * cellSize + offsetLeft,
+            cellSize - offsetRight,
+            cellSize - offsetRight
         );
     }
 
@@ -122,7 +126,7 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
 
         $("#mazeCanvas").swipe({
             swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
-                console.log(direction)
+                console.log(direction);
                 switch (direction) {
                     case "up":
                         check({
@@ -132,7 +136,7 @@ function Player(maze, c, _cellsize, onComplete, sprite = null) {
                     case "down":
                         check({
                             keyCode: 40
-                        })
+                        });
                         break;
                     case "left":
                         check({
