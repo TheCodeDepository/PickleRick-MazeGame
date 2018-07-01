@@ -79,6 +79,8 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
     }
 
     function drawEndSprite() {
+        var offsetLeft = cellSize / 50;
+        var offsetRight = cellSize / 25;
         var coord = Maze.endCoord();
         ctx.drawImage(
             endSprite,
@@ -86,10 +88,10 @@ function DrawMaze(Maze, ctx, cellsize, endSprite = null) {
             2,
             endSprite.width,
             endSprite.height,
-            coord.x * cellSize + 1,
-            coord.y * cellSize + 1,
-            cellSize - 2,
-            cellSize - 2
+            coord.x * cellSize + offsetLeft,
+            coord.y * cellSize + offsetLeft,
+            cellSize - offsetRight,
+            cellSize - offsetRight
         );
     }
 
