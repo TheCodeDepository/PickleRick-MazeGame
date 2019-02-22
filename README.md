@@ -4,7 +4,7 @@ Simple JavaScript maze game created as coursework, contains simple sprites of pi
 
 External Dependencies 
 ---
-Rather than re-invent the while I used a simple jQuery library to add swipe functionality so the game couple be played on mobile.
+Rather than re-invent the wheel I used a simple jQuery library to add swipe functionality so the game can be played on mobile.
 ```
 https://github.com/mattbryson/TouchSwipe-Jquery-Plugin
 ```
